@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.min
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.calculateResponsivePadding
@@ -67,8 +66,11 @@ fun DesktopExperience(
                 .fillMaxWidth(),
             contentAlignment = Alignment.TopCenter
         ) {
-            val columnWidth = min(maxWidth, 1218.dp)
-
+            /**
+             * TODO : Adjust layout margins to match the web design at https://sagarshah.dev/
+             * On larger screens, the margins are still inconsistent
+             * Review the responsive layout rules and ensure a consistent max content width
+             */
             val breakpoints = mapOf(
                 0.dp to 0.13f,
                 600.dp to 0.00f,
@@ -77,7 +79,7 @@ fun DesktopExperience(
             )
 
             val horizontalPadding = calculateResponsivePadding(
-                columnWidth = columnWidth,
+                columnWidth = maxWidth,
                 breakpoints = breakpoints,
                 defaultMultiplier = 0.13f
             )

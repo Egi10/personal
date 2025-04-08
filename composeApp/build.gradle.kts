@@ -41,6 +41,9 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             // Window Size
             implementation(libs.compose.material3.window.size)
+            // Coil
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor3)
         }
     }
 }

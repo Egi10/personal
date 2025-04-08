@@ -29,8 +29,11 @@ import com.bajapuik.personal.core.ui.shadowMd
 import com.bajapuik.personal.data.work.Work
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import personal.composeapp.generated.resources.Res
 import personal.composeapp.generated.resources.ic_external_link
+import personal.composeapp.generated.resources.work
+import personal.composeapp.generated.resources.work_noteworthy_projects
 
 @Composable
 internal fun MobileWork(
@@ -42,7 +45,7 @@ internal fun MobileWork(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(
-            text = "Work"
+            text = stringResource(Res.string.work)
         )
 
         Spacer(
@@ -51,7 +54,7 @@ internal fun MobileWork(
         )
 
         Text(
-            text = "Some of the noteworthy projects I have built:",
+            text = stringResource(Res.string.work_noteworthy_projects),
             style = PersonalTheme.typography.subtitle,
             color = PersonalTheme.colors.gray600,
             textAlign = TextAlign.Center
@@ -164,11 +167,11 @@ private fun MobileWorkItem(
                     }
                 }
 
-                if (item.projectUrl != null) {
+                item.projectUrl?.let {
                     PersonalIconButtons(
                         icon = painterResource(Res.drawable.ic_external_link),
                         onClick = {
-                            window.open(item.projectUrl, "_blank")
+                            window.open(it, "_blank")
                         }
                     )
                 }

@@ -1,51 +1,19 @@
 package com.bajapuik.personal.data.tertimonials
 
-import org.jetbrains.compose.resources.DrawableResource
-
 data class Testimonial(
     val message: String,
     val name: String,
     val role: String,
-    val image: DrawableResource?
+    val image: String?
 )
 
 object TestimonialData {
     val testimonials = listOf(
         Testimonial(
-            message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus.",
-            name = "Alice Smith",
-            role = "Founder - xyz.com",
-            image = null
-        ),
-        Testimonial(
-            message = "Suspendisse potenti. Vivamus at arcu ut lacus dictum sodales non et ligula.",
-            name = "Bob Johnson",
-            role = "Founder - abc.com",
-            image = null
-        ),
-        Testimonial(
-            message = "Curabitur dignissim nisi et libero iaculis, id cursus felis mattis. Aenean non odio orci.",
-            name = "Charlie Brown",
-            role = "Freelancer",
-            image = null
-        ),
-        Testimonial(
-            message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus.",
-            name = "David Wilson",
-            role = "Founder - xyz.com",
-            image = null
-        ),
-        Testimonial(
-            message = "Suspendisse potenti. Vivamus at arcu ut lacus dictum sodales non et ligula.",
-            name = "Emma Davis",
-            role = "Founder - abc.com",
-            image = null
-        ),
-        Testimonial(
-            message = "Curabitur dignissim nisi et libero iaculis, id cursus felis mattis. Aenean non odio orci.",
-            name = "Frank Miller",
-            role = "Freelancer",
-            image = null
+            message = "Egi itu seorang problem-solver juga gigih dalam bekerja. Selalu lebih mendetail saat merancang sesuatu sehingga hasil nya sangat baik. Recommended Mobile Engineer.",
+            name = "Wildan Angga Rahman",
+            role = "Mobile Engineer",
+            image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV7rJh13ruHHHOmrbO2mKI7j8cy-lcJ3HTrQ&s"
         )
     )
 }

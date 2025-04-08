@@ -1,6 +1,5 @@
 package com.bajapuik.personal.screen.main.component.testimonials
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,12 +8,19 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import coil3.PlatformContext
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.shadowMd
 import com.bajapuik.personal.data.tertimonials.Testimonial
@@ -54,11 +60,17 @@ internal fun TestimonialItem(
             ),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(Res.drawable.img_avatar),
+            AsyncImage(
+                model = ImageRequest.Builder(PlatformContext.INSTANCE)
+                    .data(item.image)
+                    .crossfade(true)
+                    .build(),
+                placeholder = painterResource(Res.drawable.img_avatar),
                 contentDescription = null,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(64.dp)
+                    .clip(CircleShape),
             )
 
             Text(
