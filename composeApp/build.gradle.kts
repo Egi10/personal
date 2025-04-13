@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
@@ -44,6 +45,18 @@ kotlin {
             // Coil
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor3)
+            // Koin
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            // Ktor
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.js)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            // Kotlinx Serialization
+            implementation(libs.kotlinx.serialization.json)
         }
     }
 }
