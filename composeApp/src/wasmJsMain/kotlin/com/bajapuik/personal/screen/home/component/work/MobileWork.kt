@@ -1,6 +1,5 @@
 package com.bajapuik.personal.screen.home.component.work
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -21,16 +20,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil3.PlatformContext
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.shadowMd
-import com.bajapuik.personal.data.work.Work
+import com.bajapuik.personal.domain.model.Work
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import personal.composeapp.generated.resources.Res
 import personal.composeapp.generated.resources.ic_external_link
+import personal.composeapp.generated.resources.img_avatar
 import personal.composeapp.generated.resources.work
 import personal.composeapp.generated.resources.work_noteworthy_projects
 
@@ -118,8 +122,12 @@ private fun MobileWorkItem(
                     ),
                 contentAlignment = Alignment.Center
             ) {
-                Image(
-                    painter = painterResource(item.image),
+                AsyncImage(
+                    model = ImageRequest.Builder(PlatformContext.INSTANCE)
+                        .data(item.image)
+                        .crossfade(true)
+                        .build(),
+                    placeholder = painterResource(Res.drawable.img_avatar),
                     contentDescription = null,
                     modifier = Modifier
                         .matchParentSize()

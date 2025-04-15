@@ -1,7 +1,6 @@
 package com.bajapuik.personal.screen.home.component.work
 
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -31,21 +30,25 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil3.PlatformContext
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.SimpleFlowRow
 import com.bajapuik.personal.core.ui.calculateResponsivePadding
 import com.bajapuik.personal.core.ui.shadowMd
-import com.bajapuik.personal.data.work.Work
+import com.bajapuik.personal.domain.model.Work
 import com.bajapuik.personal.screen.home.component.work.utils.WorkItemLayoutType
 import com.bajapuik.personal.screen.home.component.work.utils.imageDesktop
 import kotlinx.browser.window
-import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import personal.composeapp.generated.resources.Res
 import personal.composeapp.generated.resources.ic_external_link
+import personal.composeapp.generated.resources.img_avatar
 import personal.composeapp.generated.resources.work
 import personal.composeapp.generated.resources.work_noteworthy_projects
 
@@ -247,7 +250,7 @@ private fun WorkItemInfo(
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun WorkItemImage(
-    image: DrawableResource,
+    image: String,
     modifier: Modifier = Modifier
 ) {
     var isHovered by remember { mutableStateOf(false) }
@@ -263,8 +266,12 @@ private fun WorkItemImage(
             .graphicsLayer { clip = false },
         contentAlignment = Alignment.Center
     ) {
-        Image(
-            painter = painterResource(image),
+        AsyncImage(
+            model = ImageRequest.Builder(PlatformContext.INSTANCE)
+                .data(image)
+                .crossfade(true)
+                .build(),
+            placeholder = painterResource(Res.drawable.img_avatar),
             contentDescription = null,
             contentScale = ContentScale.Fit,
             modifier = Modifier

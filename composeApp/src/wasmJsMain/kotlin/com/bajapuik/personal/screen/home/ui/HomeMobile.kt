@@ -14,7 +14,7 @@ import com.bajapuik.personal.data.experience.Experience
 import com.bajapuik.personal.data.personal.Personal
 import com.bajapuik.personal.data.skils.Skills
 import com.bajapuik.personal.domain.model.Testimonial
-import com.bajapuik.personal.data.work.Work
+import com.bajapuik.personal.domain.model.Work
 import com.bajapuik.personal.screen.home.component.aboutme.MobileAboutMe
 import com.bajapuik.personal.screen.home.component.experience.MobileExperience
 import com.bajapuik.personal.screen.home.component.footer.Footer
