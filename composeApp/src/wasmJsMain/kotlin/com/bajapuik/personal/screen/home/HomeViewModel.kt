@@ -2,6 +2,7 @@ package com.bajapuik.personal.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bajapuik.personal.domain.model.Experience
 import com.bajapuik.personal.domain.model.Testimonial
 import com.bajapuik.personal.domain.model.Work
 import com.bajapuik.personal.domain.repository.PersonalRepository
@@ -21,11 +22,15 @@ class HomeViewModel(
     private val _worksUiState = MutableStateFlow<List<Work>>(emptyList())
     val worksUiState get() =  _worksUiState.asStateFlow()
 
+    private val _experiencesUiState = MutableStateFlow<List<Experience>>(emptyList())
+    val experiencesUiState get() =  _experiencesUiState.asStateFlow()
+
     fun onEvent(event: HomeEvent) {
         when (event) {
             is HomeEvent.Init -> {
                 getTestimonials()
                 getWorks()
+                getExperiences()
             }
         }
     }
@@ -42,24 +47,20 @@ class HomeViewModel(
 
     private fun getWorks() {
         viewModelScope.launch {
-            try {
-                val result = personalRepository.getWorks()
+            val result = personalRepository.getWorks()
 
-                _worksUiState.update {
-                    result
-                }
-            } catch (e: Exception){
-                _worksUiState.update {
-                    listOf(
-                        Work(
-                            name = "TravelMate ${e.message}",
-                            description = "An intuitive travel planning app that helps users organize their trips, find attractions, and track expenses.",
-                            technologies = listOf("Kotlin", "Jetpack Compose", "Firebase", "Google Maps SDK"),
-                            image = "https://example.com/images/travelmate.png",
-                            projectUrl = "https://play.google.com/store/apps/details?id=com.example.travelmate"
-                        )
-                    )
-                }
+            _worksUiState.update {
+                result
+            }
+        }
+    }
+
+    private fun getExperiences() {
+        viewModelScope.launch {
+            val result = personalRepository.getExperiences()
+
+            _experiencesUiState.update {
+                result
             }
         }
     }

@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.calculateResponsivePadding
-import com.bajapuik.personal.data.experience.Experience
+import com.bajapuik.personal.domain.model.Experience
 import com.bajapuik.personal.data.personal.Personal
 import com.bajapuik.personal.data.skils.Skills
 import com.bajapuik.personal.domain.model.Testimonial

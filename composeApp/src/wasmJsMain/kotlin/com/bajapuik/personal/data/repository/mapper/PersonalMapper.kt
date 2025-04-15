@@ -1,9 +1,23 @@
 package com.bajapuik.personal.data.repository.mapper
 
+import com.bajapuik.personal.data.source.response.ExperiencesResponse
 import com.bajapuik.personal.data.source.response.TestimonialsResponse
 import com.bajapuik.personal.data.source.response.WorksResponse
+import com.bajapuik.personal.domain.model.Experience
 import com.bajapuik.personal.domain.model.Testimonial
 import com.bajapuik.personal.domain.model.Work
+
+internal fun List<ExperiencesResponse>.asExperienceDomainModel(): List<Experience> {
+    return this.map {
+        Experience(
+            company = it.companyImage,
+            position = it.position,
+            startDate = it.startDate,
+            endDate = it.endDate,
+            descriptions = it.descriptions
+        )
+    }
+}
 
 internal fun List<WorksResponse>.asWorkDomainModel(): List<Work> {
     return this.map {

@@ -1,6 +1,5 @@
 package com.bajapuik.personal.screen.home.component.experience
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,12 +20,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil3.PlatformContext
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.calculateResponsivePadding
 import com.bajapuik.personal.core.ui.shadowMd
-import com.bajapuik.personal.data.experience.Experience
+import com.bajapuik.personal.domain.model.Experience
 import org.jetbrains.compose.resources.painterResource
+import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.img_avatar
 
 @Composable
 fun DesktopExperience(
@@ -136,8 +141,12 @@ private fun ExperienceItem(
                 modifier = Modifier
                     .weight(1f)
             ) {
-                Image(
-                    painter = painterResource(item.company),
+                AsyncImage(
+                    model = ImageRequest.Builder(PlatformContext.INSTANCE)
+                        .data(item.company)
+                        .crossfade(true)
+                        .build(),
+                    placeholder = painterResource(Res.drawable.img_avatar),
                     contentDescription = null,
                     modifier = Modifier
                         .size(

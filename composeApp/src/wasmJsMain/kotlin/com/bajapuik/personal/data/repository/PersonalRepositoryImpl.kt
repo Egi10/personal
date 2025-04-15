@@ -1,8 +1,10 @@
 package com.bajapuik.personal.data.repository
 
+import com.bajapuik.personal.data.repository.mapper.asExperienceDomainModel
 import com.bajapuik.personal.data.source.PersonalDataSource
 import com.bajapuik.personal.data.repository.mapper.asTestimonialDomainModel
 import com.bajapuik.personal.data.repository.mapper.asWorkDomainModel
+import com.bajapuik.personal.domain.model.Experience
 import com.bajapuik.personal.domain.model.Testimonial
 import com.bajapuik.personal.domain.model.Work
 import com.bajapuik.personal.domain.repository.PersonalRepository
@@ -10,6 +12,11 @@ import com.bajapuik.personal.domain.repository.PersonalRepository
 class PersonalRepositoryImpl(
     private val personalDataSource: PersonalDataSource
 ) : PersonalRepository {
+    override suspend fun getExperiences(): List<Experience> {
+        return personalDataSource.getExperiences()
+            .asExperienceDomainModel()
+    }
+
     override suspend fun getWorks(): List<Work> {
         return personalDataSource.getWorks()
             .asWorkDomainModel()
