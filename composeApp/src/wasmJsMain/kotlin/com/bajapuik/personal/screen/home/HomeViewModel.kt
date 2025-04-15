@@ -3,6 +3,7 @@ package com.bajapuik.personal.screen.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bajapuik.personal.domain.model.Experience
+import com.bajapuik.personal.domain.model.Skills
 import com.bajapuik.personal.domain.model.Testimonial
 import com.bajapuik.personal.domain.model.Work
 import com.bajapuik.personal.domain.repository.PersonalRepository
@@ -14,16 +15,19 @@ import kotlinx.coroutines.flow.update
 
 class HomeViewModel(
     private val personalRepository: PersonalRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _testimonialsUiState = MutableStateFlow<List<Testimonial>>(emptyList())
-    val testimonialsUiState get() =  _testimonialsUiState.asStateFlow()
+    val testimonialsUiState get() = _testimonialsUiState.asStateFlow()
 
     private val _worksUiState = MutableStateFlow<List<Work>>(emptyList())
-    val worksUiState get() =  _worksUiState.asStateFlow()
+    val worksUiState get() = _worksUiState.asStateFlow()
 
     private val _experiencesUiState = MutableStateFlow<List<Experience>>(emptyList())
-    val experiencesUiState get() =  _experiencesUiState.asStateFlow()
+    val experiencesUiState get() = _experiencesUiState.asStateFlow()
+
+    private val _skillsUiState = MutableStateFlow<List<Skills>>(emptyList())
+    val skillsUiState get() = _skillsUiState.asStateFlow()
 
     fun onEvent(event: HomeEvent) {
         when (event) {
@@ -31,6 +35,7 @@ class HomeViewModel(
                 getTestimonials()
                 getWorks()
                 getExperiences()
+                getSkills()
             }
         }
     }
@@ -60,6 +65,16 @@ class HomeViewModel(
             val result = personalRepository.getExperiences()
 
             _experiencesUiState.update {
+                result
+            }
+        }
+    }
+
+    private fun getSkills() {
+        viewModelScope.launch {
+            val result = personalRepository.getSkills()
+
+            _skillsUiState.update {
                 result
             }
         }

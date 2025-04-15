@@ -1,6 +1,5 @@
 package com.bajapuik.personal.screen.home.component.skill
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,11 +15,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil3.PlatformContext
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
-import com.bajapuik.personal.data.skils.Skills
+import com.bajapuik.personal.domain.model.Skills
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.painterResource
+import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.img_avatar
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -85,8 +90,12 @@ private fun MobileSkillsItem(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Image(
-            painter = painterResource(item.icon),
+        AsyncImage(
+            model = ImageRequest.Builder(PlatformContext.INSTANCE)
+                .data(item.icon)
+                .crossfade(true)
+                .build(),
+            placeholder = painterResource(Res.drawable.img_avatar),
             contentDescription = item.name,
             modifier = Modifier
                 .size(64.dp)

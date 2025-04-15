@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.data.personal.PersonalData
-import com.bajapuik.personal.data.skils.SkillsData
 import com.bajapuik.personal.screen.home.event.HomeEvent
 import com.bajapuik.personal.screen.home.ui.HomeDesktop
 import com.bajapuik.personal.screen.home.ui.HomeMobile
@@ -33,9 +32,9 @@ fun HomeScreen(
     val testimonials by viewModel.testimonialsUiState.collectAsStateWithLifecycle()
     val works by viewModel.worksUiState.collectAsStateWithLifecycle()
     val experiences by viewModel.experiencesUiState.collectAsStateWithLifecycle()
+    val skills by viewModel.skillsUiState.collectAsStateWithLifecycle()
 
     val personal = PersonalData.personal
-    val skills = SkillsData.skills
 
     Scaffold(
         modifier = modifier

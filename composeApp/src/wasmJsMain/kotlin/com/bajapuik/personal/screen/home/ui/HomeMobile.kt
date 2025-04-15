@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.domain.model.Experience
 import com.bajapuik.personal.data.personal.Personal
-import com.bajapuik.personal.data.skils.Skills
+import com.bajapuik.personal.domain.model.Skills
 import com.bajapuik.personal.domain.model.Testimonial
 import com.bajapuik.personal.domain.model.Work
 import com.bajapuik.personal.screen.home.component.aboutme.MobileAboutMe
