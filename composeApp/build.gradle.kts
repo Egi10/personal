@@ -57,6 +57,8 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             // Kotlinx Serialization
             implementation(libs.kotlinx.serialization.json)
+            // Haze
+            implementation("dev.chrisbanes.haze:haze:1.5.3")
         }
     }
 }

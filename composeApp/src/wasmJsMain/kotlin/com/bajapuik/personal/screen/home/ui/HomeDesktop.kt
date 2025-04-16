@@ -20,10 +20,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.platform.LocalDensity
@@ -45,6 +41,7 @@ import com.bajapuik.personal.screen.home.component.skill.DesktopSkills
 import com.bajapuik.personal.screen.home.component.testimonials.DesktopTestimonials
 import com.bajapuik.personal.screen.home.component.work.DesktopWork
 import com.bajapuik.personal.screen.home.utils.Section
+import com.bajapuik.personal.screen.home.utils.glassBackground
 import kotlinx.coroutines.launch
 
 @Composable
@@ -232,86 +229,55 @@ fun HomeDesktop(
             }
         }
 
-        Column(
+        DesktopHeader(
+            name = personal.fullName,
+            onInitialClick = {
+                scope.launch {
+                    scrollState.animateScrollTo(
+                        profileOffset,
+                        animationSpec = tween(
+                            durationMillis = 500,
+                            easing = FastOutSlowInEasing
+                        )
+                    )
+                }
+            },
+            onSectionClick = {
+                scope.launch {
+                    val rawOffset = when (it) {
+                        Section.ABOUT -> aboutMeOffset
+                        Section.WORK -> workOffset
+                        Section.TESTIMONIAL -> testimonialOffset
+                        Section.CONTACT -> contactOffset
+                    }
+
+                    val offsetWithSpacing = rawOffset - with(density) {
+                        16.dp.toPx()
+                    }.toInt()
+                    scrollState.animateScrollTo(
+                        offsetWithSpacing,
+                        animationSpec = tween(
+                            durationMillis = 500,
+                            easing = FastOutSlowInEasing
+                        )
+                    )
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
+                .glassBackground(
+                    isScrolled = isScrolled,
+                    color = PersonalTheme.colors.default,
+                    dividerColor = PersonalTheme.colors.gray100,
+                    isDesktop = true,
+                )
                 .onGloballyPositioned { layoutCoordinates ->
                     headerHeightPx = layoutCoordinates.size.height
                 }
-        ) {
-            DesktopHeader(
-                name = personal.fullName,
-                onInitialClick = {
-                    scope.launch {
-                        scrollState.animateScrollTo(
-                            profileOffset,
-                            animationSpec = tween(
-                                durationMillis = 500,
-                                easing = FastOutSlowInEasing
-                            )
-                        )
-                    }
-                },
-                onSectionClick = {
-                    scope.launch {
-                        val rawOffset = when (it) {
-                            Section.ABOUT -> aboutMeOffset
-                            Section.WORK -> workOffset
-                            Section.TESTIMONIAL -> testimonialOffset
-                            Section.CONTACT -> contactOffset
-                        }
-
-                        val offsetWithSpacing = rawOffset - with(density) {
-                            16.dp.toPx()
-                        }.toInt()
-                        scrollState.animateScrollTo(
-                            offsetWithSpacing,
-                            animationSpec = tween(
-                                durationMillis = 500,
-                                easing = FastOutSlowInEasing
-                            )
-                        )
-                    }
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .glassBackground(
-                        isScrolled = isScrolled,
-                        color = PersonalTheme.colors.default,
-                        dividerColor = PersonalTheme.colors.gray100
-                    )
-                    .padding(
-                        vertical = 16.dp,
-                        horizontal = horizontalPadding
-                    )
-            )
-        }
-    }
-}
-
-/**
- * TODO : Add Effect Blur
- */
-private fun Modifier.glassBackground(
-    isScrolled: Boolean,
-    color: Color,
-    dividerColor: Color,
-    blurSimulationAlpha: Float = 0.95f
-): Modifier = composed {
-    this
-        .background(
-            color = color.copy(
-                alpha = if (isScrolled) blurSimulationAlpha else 0f
-            )
-        )
-        .drawBehind {
-            if (isScrolled) {
-                drawLine(
-                    color = dividerColor,
-                    start = Offset(0f, size.height),
-                    end = Offset(size.width, size.height),
-                    strokeWidth = 1.dp.toPx()
+                .padding(
+                    vertical = 16.dp,
+                    horizontal = horizontalPadding
                 )
-            }
-        }
+        )
+    }
 }
