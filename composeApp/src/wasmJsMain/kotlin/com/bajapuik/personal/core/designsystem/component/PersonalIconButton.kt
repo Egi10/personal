@@ -112,6 +112,7 @@ fun PersonalIconButtons(
                 .crossfade(true)
                 .build(),
             placeholder = painterResource(Res.drawable.img_avatar),
+            error = painterResource(Res.drawable.img_avatar),
             contentDescription = null,
             modifier = Modifier
                 .size(24.dp)

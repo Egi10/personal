@@ -22,7 +22,7 @@ fun Platform(
     ) {
         item.forEach {
             PersonalIconButtons(
-                icon = it.platform,
+                icon = it.icon,
                 onClick = {
                     window.open(it.url, "_blank")
                 }

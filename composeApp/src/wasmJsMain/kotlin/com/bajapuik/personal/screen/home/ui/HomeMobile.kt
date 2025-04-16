@@ -38,6 +38,7 @@ fun HomeMobile(
         modifier = modifier
     ) {
         MobileHeader(
+            name = personal.fullName,
             onMenuClick = {
 
             },

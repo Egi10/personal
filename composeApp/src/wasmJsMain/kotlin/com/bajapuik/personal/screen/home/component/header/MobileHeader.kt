@@ -8,12 +8,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
+import com.bajapuik.personal.core.utils.NameUtils
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
 import personal.composeapp.generated.resources.ic_burger
 
 @Composable
 fun MobileHeader(
+    name: String,
     onMenuClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -22,7 +24,7 @@ fun MobileHeader(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = "<JSN/>",
+            text = "<${NameUtils.getInitials(name = name)}/>",
             style = PersonalTheme.typography.headingH3,
             color = PersonalTheme.colors.gray900,
             fontWeight = FontWeight.Bold,

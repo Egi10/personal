@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.bajapuik.personal.core.designsystem.component.PersonalButton
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
+import com.bajapuik.personal.core.utils.NameUtils
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
@@ -33,6 +34,7 @@ import personal.composeapp.generated.resources.ic_dark_mode_light
 
 @Composable
 fun DesktopHeader(
+    name: String,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -43,7 +45,7 @@ fun DesktopHeader(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "<JSN/>",
+            text = "<${NameUtils.getInitials(name = name)}/>",
             style = PersonalTheme.typography.headingH3,
             color = PersonalTheme.colors.gray900,
             fontWeight = FontWeight.Bold,

@@ -67,6 +67,7 @@ fun HomeDesktop(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             DesktopHeader(
+                name = personal.fullName,
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
