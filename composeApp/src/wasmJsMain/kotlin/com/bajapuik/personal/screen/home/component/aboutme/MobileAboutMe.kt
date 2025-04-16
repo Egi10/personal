@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.MobileProfileImage
-import com.bajapuik.personal.data.personal.Personal
+import com.bajapuik.personal.domain.model.Personal
 
 @Composable
 fun MobileAboutMe(
@@ -36,6 +36,7 @@ fun MobileAboutMe(
         )
 
         MobileProfileImage(
+            image = personal.imageAboutMe,
             width = 320.dp,
             height = 380.dp,
             borderColor = PersonalTheme.colors.gray50,

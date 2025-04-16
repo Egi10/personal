@@ -6,19 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
-import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
+import com.bajapuik.personal.domain.model.SocialMedia
 import kotlinx.browser.window
-import org.jetbrains.compose.resources.painterResource
-import personal.composeapp.generated.resources.Res
-import personal.composeapp.generated.resources.ic_github
-import personal.composeapp.generated.resources.ic_linkedin
-import personal.composeapp.generated.resources.ic_medium
 
 @Composable
 fun Platform(
-    github: String,
-    medium: String,
-    linkedIn: String,
+    item: List<SocialMedia>,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -27,28 +20,13 @@ fun Platform(
             space = 4.dp
         )
     ) {
-        PersonalIconButtons(
-            icon = painterResource(Res.drawable.ic_github),
-            tint = PersonalTheme.colors.gray600,
-            onClick = {
-                window.open(github, "_blank")
-            }
-        )
-
-        PersonalIconButtons(
-            icon = painterResource(Res.drawable.ic_medium),
-            tint = PersonalTheme.colors.gray600,
-            onClick = {
-                window.open(medium, "_blank")
-            }
-        )
-
-        PersonalIconButtons(
-            icon = painterResource(Res.drawable.ic_linkedin),
-            tint = PersonalTheme.colors.gray600,
-            onClick = {
-                window.open(linkedIn, "_blank")
-            }
-        )
+        item.forEach {
+            PersonalIconButtons(
+                icon = it.platform,
+                onClick = {
+                    window.open(it.url, "_blank")
+                }
+            )
+        }
     }
 }

@@ -1,6 +1,5 @@
 package com.bajapuik.personal.screen.home.component.aboutme
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -19,12 +18,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil3.PlatformContext
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
-import com.bajapuik.personal.data.personal.Personal
+import com.bajapuik.personal.domain.model.Personal
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
-import personal.composeapp.generated.resources.img_profile
+import personal.composeapp.generated.resources.img_avatar
 
 @Composable
 fun DesktopAboutMe(
@@ -58,7 +61,9 @@ fun DesktopAboutMe(
                 modifier = Modifier
                     .weight(1f)
             ) {
-                ProfileImageAboutMe()
+                ProfileImageAboutMe(
+                    image = personal.imageAboutMe
+                )
             }
 
 
@@ -99,6 +104,7 @@ fun DesktopAboutMe(
 
 @Composable
 private fun ProfileImageAboutMe(
+    image: String,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -126,7 +132,14 @@ private fun ProfileImageAboutMe(
                 )
         )
 
-        Image(
+        AsyncImage(
+            model = ImageRequest.Builder(PlatformContext.INSTANCE)
+                .data(image)
+                .crossfade(true)
+                .build(),
+            placeholder = painterResource(Res.drawable.img_avatar),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(
                     width = 400.dp,
@@ -142,9 +155,6 @@ private fun ProfileImageAboutMe(
                 .align(
                     alignment = Alignment.TopEnd
                 ),
-            painter = painterResource(Res.drawable.img_profile),
-            contentDescription = null,
-            contentScale = ContentScale.Crop
         )
     }
 }

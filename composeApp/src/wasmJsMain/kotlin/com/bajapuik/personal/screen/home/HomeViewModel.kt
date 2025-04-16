@@ -3,6 +3,7 @@ package com.bajapuik.personal.screen.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bajapuik.personal.domain.model.Experience
+import com.bajapuik.personal.domain.model.Personal
 import com.bajapuik.personal.domain.model.Skills
 import com.bajapuik.personal.domain.model.Testimonial
 import com.bajapuik.personal.domain.model.Work
@@ -10,8 +11,8 @@ import com.bajapuik.personal.domain.repository.PersonalRepository
 import com.bajapuik.personal.screen.home.event.HomeEvent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val personalRepository: PersonalRepository
@@ -29,6 +30,9 @@ class HomeViewModel(
     private val _skillsUiState = MutableStateFlow<List<Skills>>(emptyList())
     val skillsUiState get() = _skillsUiState.asStateFlow()
 
+    private val _personalUiState = MutableStateFlow<Personal?>(null)
+    val personalUiState get() = _personalUiState.asStateFlow()
+
     fun onEvent(event: HomeEvent) {
         when (event) {
             is HomeEvent.Init -> {
@@ -36,6 +40,7 @@ class HomeViewModel(
                 getWorks()
                 getExperiences()
                 getSkills()
+                getPersonal()
             }
         }
     }
@@ -75,6 +80,16 @@ class HomeViewModel(
             val result = personalRepository.getSkills()
 
             _skillsUiState.update {
+                result
+            }
+        }
+    }
+
+    private fun getPersonal() {
+        viewModelScope.launch {
+            val result = personalRepository.getPersonal()
+
+            _personalUiState.update {
                 result
             }
         }

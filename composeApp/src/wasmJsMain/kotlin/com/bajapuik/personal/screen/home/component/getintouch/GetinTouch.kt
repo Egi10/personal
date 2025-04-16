@@ -19,7 +19,7 @@ import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.Platform
 import com.bajapuik.personal.core.utils.Clipboard
-import com.bajapuik.personal.data.personal.Personal
+import com.bajapuik.personal.domain.model.Personal
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
 import personal.composeapp.generated.resources.ic_copy
@@ -89,9 +89,7 @@ internal fun GetInTouch(
         )
 
         Platform(
-            github = personal.github,
-            medium = personal.medium,
-            linkedIn = personal.linkedIn
+            item = personal.socialMedia
         )
     }
 }

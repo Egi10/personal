@@ -10,7 +10,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
-import com.bajapuik.personal.data.personal.PersonalData
 import com.bajapuik.personal.screen.home.event.HomeEvent
 import com.bajapuik.personal.screen.home.ui.HomeDesktop
 import com.bajapuik.personal.screen.home.ui.HomeMobile
@@ -33,43 +32,44 @@ fun HomeScreen(
     val works by viewModel.worksUiState.collectAsStateWithLifecycle()
     val experiences by viewModel.experiencesUiState.collectAsStateWithLifecycle()
     val skills by viewModel.skillsUiState.collectAsStateWithLifecycle()
-
-    val personal = PersonalData.personal
+    val personal by viewModel.personalUiState.collectAsStateWithLifecycle()
 
     Scaffold(
         modifier = modifier
             .fillMaxWidth(),
         containerColor = PersonalTheme.colors.default
     ) { paddingValues ->
-        when (windowWidthSizeClass) {
-            WindowWidthSizeClass.Compact, WindowWidthSizeClass.Medium -> {
-                // Mobile View
-                HomeMobile(
-                    personal = personal,
-                    skills = skills,
-                    experiences = experiences,
-                    works = works,
-                    testimonials = testimonials,
-                    modifier = Modifier
-                        .padding(
-                            paddingValues = paddingValues
-                        )
-                )
-            }
+        personal?.let {
+            when (windowWidthSizeClass) {
+                WindowWidthSizeClass.Compact, WindowWidthSizeClass.Medium -> {
+                    // Mobile View
+                    HomeMobile(
+                        personal = it,
+                        skills = skills,
+                        experiences = experiences,
+                        works = works,
+                        testimonials = testimonials,
+                        modifier = Modifier
+                            .padding(
+                                paddingValues = paddingValues
+                            )
+                    )
+                }
 
-            WindowWidthSizeClass.Expanded -> {
-                // Tablet And Desktop View (All Sections in One Screen)
-                HomeDesktop(
-                    skills = skills,
-                    experiences = experiences,
-                    works = works,
-                    testimonials = testimonials,
-                    personal = personal,
-                    modifier = Modifier
-                        .padding(
-                            paddingValues = paddingValues
-                        )
-                )
+                WindowWidthSizeClass.Expanded -> {
+                    // Tablet And Desktop View (All Sections in One Screen)
+                    HomeDesktop(
+                        skills = skills,
+                        experiences = experiences,
+                        works = works,
+                        testimonials = testimonials,
+                        personal = it,
+                        modifier = Modifier
+                            .padding(
+                                paddingValues = paddingValues
+                            )
+                    )
+                }
             }
         }
     }

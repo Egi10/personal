@@ -1,11 +1,8 @@
 package com.bajapuik.personal.core.ui
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -14,13 +11,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil3.PlatformContext
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
-import personal.composeapp.generated.resources.img_profile
+import personal.composeapp.generated.resources.img_avatar
 
 @Composable
 fun MobileProfileImage(
+    image: String,
     width: Dp,
     height: Dp,
     borderColor: Color,
@@ -48,7 +50,14 @@ fun MobileProfileImage(
                 )
         )
 
-        Image(
+        AsyncImage(
+            model = ImageRequest.Builder(PlatformContext.INSTANCE)
+                .data(image)
+                .crossfade(true)
+                .build(),
+            placeholder = painterResource(Res.drawable.img_avatar),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
             modifier = Modifier
                 .matchParentSize()
                 .padding(
@@ -60,9 +69,6 @@ fun MobileProfileImage(
                     width = 8.dp,
                     color = borderColor
                 ),
-            painter = painterResource(Res.drawable.img_profile),
-            contentDescription = null,
-            contentScale = ContentScale.Crop
         )
     }
 }

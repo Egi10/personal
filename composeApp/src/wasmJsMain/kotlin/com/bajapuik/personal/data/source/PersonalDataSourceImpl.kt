@@ -1,6 +1,7 @@
 package com.bajapuik.personal.data.source
 
 import com.bajapuik.personal.data.source.response.ExperiencesResponse
+import com.bajapuik.personal.data.source.response.PersonalResponse
 import com.bajapuik.personal.data.source.response.SkillsResponse
 import com.bajapuik.personal.data.source.response.TestimonialsResponse
 import com.bajapuik.personal.data.source.response.WorksResponse
@@ -11,6 +12,11 @@ import io.ktor.client.request.get
 class PersonalDataSourceImpl(
     private val httpClient: HttpClient
 ) : PersonalDataSource {
+    override suspend fun getPersonal(): PersonalResponse {
+        return httpClient.get("personal.json")
+            .body()
+    }
+
     override suspend fun getSkills(): List<SkillsResponse> {
         return httpClient.get("skills.json")
             .body()

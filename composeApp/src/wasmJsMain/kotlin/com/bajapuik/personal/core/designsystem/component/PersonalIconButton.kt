@@ -20,7 +20,14 @@ import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
+import coil3.PlatformContext
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
+import org.jetbrains.compose.resources.painterResource
+import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.img_avatar
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -60,6 +67,52 @@ fun PersonalIconButtons(
             painter = icon,
             contentDescription = null,
             tint = tint,
+            modifier = Modifier
+                .size(24.dp)
+        )
+    }
+}
+
+@OptIn(ExperimentalComposeUiApi::class)
+@Composable
+fun PersonalIconButtons(
+    icon: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    var isHovered by remember {
+        mutableStateOf(false)
+    }
+
+    Box(
+        modifier = modifier
+            .size(36.dp)
+            .background(
+                color = if (isHovered) {
+                    PersonalTheme.colors.gray100
+                } else {
+                    Color.Transparent
+                },
+                shape = RoundedCornerShape(8.dp)
+            )
+            .onPointerEvent(PointerEventType.Enter) { isHovered = true }
+            .onPointerEvent(PointerEventType.Exit) { isHovered = false }
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onTap = {
+                        onClick.invoke()
+                    }
+                )
+            },
+        contentAlignment = Alignment.Center
+    ) {
+        AsyncImage(
+            model = ImageRequest.Builder(PlatformContext.INSTANCE)
+                .data(icon)
+                .crossfade(true)
+                .build(),
+            placeholder = painterResource(Res.drawable.img_avatar),
+            contentDescription = null,
             modifier = Modifier
                 .size(24.dp)
         )
