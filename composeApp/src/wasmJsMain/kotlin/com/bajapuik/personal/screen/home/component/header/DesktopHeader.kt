@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.bajapuik.personal.core.designsystem.component.PersonalButton
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
+import kotlinx.browser.window
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
 import personal.composeapp.generated.resources.ic_dark_mode_light
@@ -95,7 +96,7 @@ private fun MenuNavigation(
         PersonalButton(
             text = "Download CV",
             onClick = {
-
+                window.open("https://egi10.github.io/storage/resume/julsapargi_nursam.pdf", "_blank")
             }
         )
     }
