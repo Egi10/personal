@@ -27,6 +27,7 @@ import com.bajapuik.personal.core.designsystem.component.PersonalButton
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.utils.NameUtils
+import com.bajapuik.personal.screen.home.utils.Section
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
@@ -34,6 +35,8 @@ import personal.composeapp.generated.resources.ic_dark_mode_light
 
 @Composable
 fun DesktopHeader(
+    onInitialClick: () -> Unit,
+    onSectionClick: (Section) -> Unit,
     name: String,
     modifier: Modifier = Modifier
 ) {
@@ -50,22 +53,34 @@ fun DesktopHeader(
             color = PersonalTheme.colors.gray900,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
+                .pointerInput(Unit) {
+                    detectTapGestures(
+                        onTap = {
+                            onInitialClick.invoke()
+                        }
+                    )
+                }
                 .weight(1f)
         )
 
-        MenuNavigation()
+        MenuNavigation(
+            onSectionClick = onSectionClick
+        )
     }
 }
 
 @Composable
 private fun MenuNavigation(
+    onSectionClick: (Section) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        MenuHeader()
+        MenuHeader(
+            onSectionClick = onSectionClick
+        )
 
         Spacer(
             modifier = Modifier
@@ -98,7 +113,10 @@ private fun MenuNavigation(
         PersonalButton(
             text = "Download CV",
             onClick = {
-                window.open("https://egi10.github.io/storage/resume/julsapargi_nursam.pdf", "_blank")
+                window.open(
+                    "https://egi10.github.io/storage/resume/julsapargi_nursam.pdf",
+                    "_blank"
+                )
             }
         )
     }
@@ -107,6 +125,7 @@ private fun MenuNavigation(
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun MenuHeader(
+    onSectionClick: (Section) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -115,12 +134,8 @@ private fun MenuHeader(
             space = 24.dp
         )
     ) {
-        listOf(
-            "About",
-            "Work",
-            "Testimonial",
-            "Contact"
-        ).forEachIndexed { index, s ->
+        val sections = Section.entries
+        sections.forEach { s ->
             var isHovered by remember {
                 mutableStateOf(false)
             }
@@ -132,13 +147,13 @@ private fun MenuHeader(
                     .pointerInput(Unit) {
                         detectTapGestures(
                             onTap = {
-
+                                onSectionClick.invoke(s)
                             }
                         )
                     }
             ) {
                 Text(
-                    text = s,
+                    text = s.title,
                     style = PersonalTheme.typography.body2,
                     fontWeight = FontWeight.Medium,
                     color = if (!isHovered) {
