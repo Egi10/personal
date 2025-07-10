@@ -26,12 +26,14 @@ import androidx.compose.ui.unit.dp
 import com.bajapuik.personal.core.designsystem.component.PersonalButton
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
+import com.bajapuik.personal.core.designsystem.utils.LocalThemeState
 import com.bajapuik.personal.core.utils.NameUtils
 import com.bajapuik.personal.screen.home.utils.Section
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
 import personal.composeapp.generated.resources.ic_dark_mode_light
+import personal.composeapp.generated.resources.ic_light_mode
 
 @Composable
 fun DesktopHeader(
@@ -74,6 +76,8 @@ private fun MenuNavigation(
     onSectionClick: (Section) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val themeState = LocalThemeState.current
+
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
@@ -99,9 +103,13 @@ private fun MenuNavigation(
         )
 
         PersonalIconButtons(
-            icon = painterResource(Res.drawable.ic_dark_mode_light),
+            icon = if (themeState.isDarkMode) {
+                painterResource(Res.drawable.ic_dark_mode_light)
+            } else {
+                painterResource(Res.drawable.ic_light_mode)
+            },
             onClick = {
-
+                themeState.toggleTheme()
             }
         )
 

@@ -10,28 +10,48 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import com.bajapuik.personal.core.designsystem.utils.LocalThemeState
+import com.bajapuik.personal.core.designsystem.utils.ThemeState
 
 @Composable
 fun PersonalTheme(
     windowWidthSizeClass: WindowWidthSizeClass,
+    themeState: ThemeState,
     content: @Composable () -> Unit
 ) {
-    // TODO Add Dart Color
-    val personalColors = PersonalColors(
-        default = Color(0xFFFFFFFF),
-        gray50 = Color(0xFFF9FAFB),
-        gray100 = Color(0xFFF3F4F6),
-        gray200 = Color(0xFFE5E7EB),
-        gray300 = Color(0xFFD1D5DB),
-        gray400 = Color(0xFF9CA3AF),
-        gray500 = Color(0xFF6B7280),
-        gray600 = Color(0xFF4B5563),
-        gray700 = Color(0xFF374151),
-        gray800 = Color(0xFF1F2937),
-        gray900 = Color(0xFF111827),
-        gray950 = Color(0xFF030712),
-        emerald500 = Color(0xFF10B981)
-    )
+    val personalColors = if (themeState.isDarkMode) {
+        PersonalColors(
+            default = Color(0xFF030712),
+            gray50 = Color(0xFF111827),
+            gray100 = Color(0xFF1f2937),
+            gray200 = Color(0xFF374151),
+            gray300 = Color(0xFF4b5563),
+            gray400 = Color(0xFF6b7280),
+            gray500 = Color(0xFF9ca3af),
+            gray600 = Color(0xFFd1d5db),
+            gray700 = Color(0xFFe5e7eb),
+            gray800 = Color(0xFFf3f4f6),
+            gray900 = Color(0xFFf9fafb),
+            gray950 = Color(0xFFffffff),
+            emerald500 = Color(0xFF10b981)
+        )
+    } else {
+        PersonalColors(
+            default = Color(0xFFFFFFFF),
+            gray50 = Color(0xFFF9FAFB),
+            gray100 = Color(0xFFF3F4F6),
+            gray200 = Color(0xFFE5E7EB),
+            gray300 = Color(0xFFD1D5DB),
+            gray400 = Color(0xFF9CA3AF),
+            gray500 = Color(0xFF6B7280),
+            gray600 = Color(0xFF4B5563),
+            gray700 = Color(0xFF374151),
+            gray800 = Color(0xFF1F2937),
+            gray900 = Color(0xFF111827),
+            gray950 = Color(0xFF030712),
+            emerald500 = Color(0xFF10B981)
+        )
+    }
 
     val fontFamily = interFamily
     val personalTypography = PersonalTypography(
@@ -77,6 +97,7 @@ fun PersonalTheme(
         LocalPersonalColors provides personalColors,
         LocalPersonalTypography provides personalTypography,
         LocalPersonalElevation provides personalElevation,
+        LocalThemeState provides themeState,
         content = content
     )
 }
