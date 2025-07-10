@@ -1,10 +1,10 @@
-package com.bajapuik.personal.data.repository.mapper
+package com.bajapuik.personal.data.repository.personal.mapper
 
-import com.bajapuik.personal.data.source.response.ExperiencesResponse
-import com.bajapuik.personal.data.source.response.PersonalResponse
-import com.bajapuik.personal.data.source.response.SkillsResponse
-import com.bajapuik.personal.data.source.response.TestimonialsResponse
-import com.bajapuik.personal.data.source.response.WorksResponse
+import com.bajapuik.personal.data.source.remote.response.ExperiencesResponse
+import com.bajapuik.personal.data.source.remote.response.PersonalResponse
+import com.bajapuik.personal.data.source.remote.response.SkillsResponse
+import com.bajapuik.personal.data.source.remote.response.TestimonialsResponse
+import com.bajapuik.personal.data.source.remote.response.WorksResponse
 import com.bajapuik.personal.domain.model.Experience
 import com.bajapuik.personal.domain.model.Personal
 import com.bajapuik.personal.domain.model.Skills

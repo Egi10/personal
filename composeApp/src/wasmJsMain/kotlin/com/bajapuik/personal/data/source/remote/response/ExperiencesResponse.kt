@@ -1,4 +1,4 @@
-package com.bajapuik.personal.data.source.response
+package com.bajapuik.personal.data.source.remote.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

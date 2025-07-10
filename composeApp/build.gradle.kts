@@ -58,7 +58,9 @@ kotlin {
             // Kotlinx Serialization
             implementation(libs.kotlinx.serialization.json)
             // Haze
-            implementation("dev.chrisbanes.haze:haze:1.5.3")
+            implementation(libs.haze)
+            // MultiplatformSetting
+            implementation(libs.multiplatform.settings)
         }
     }
 }
