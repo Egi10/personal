@@ -36,7 +36,7 @@ fun PersonalIconButtons(
     icon: Painter,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    tint: Color = Color.Unspecified
+    tint: Color = PersonalTheme.colors.gray600
 ) {
     var isHovered by remember {
         mutableStateOf(false)

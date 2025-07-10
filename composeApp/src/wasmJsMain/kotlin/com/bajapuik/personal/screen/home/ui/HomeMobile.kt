@@ -40,6 +40,8 @@ import com.bajapuik.personal.core.designsystem.component.PersonalButton
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
 import com.bajapuik.personal.core.designsystem.component.PersonalRightModalNavigationDrawer
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
+import com.bajapuik.personal.core.designsystem.utils.LocalThemeState
+import com.bajapuik.personal.core.designsystem.utils.ThemeState
 import com.bajapuik.personal.core.utils.NameUtils
 import com.bajapuik.personal.domain.model.Experience
 import com.bajapuik.personal.domain.model.Personal
@@ -63,6 +65,7 @@ import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
 import personal.composeapp.generated.resources.ic_close
 import personal.composeapp.generated.resources.ic_dark_mode_light
+import personal.composeapp.generated.resources.ic_light_mode
 
 @Composable
 fun HomeMobile(
@@ -90,6 +93,8 @@ fun HomeMobile(
 
     var headerHeightPx by remember { mutableStateOf(0) }
 
+    val themeState = LocalThemeState.current
+
     PersonalRightModalNavigationDrawer(
         drawerContent = {
             ModalDrawerSheet(
@@ -99,6 +104,7 @@ fun HomeMobile(
                 drawerContainerColor = PersonalTheme.colors.default
             ) {
                 DrawerMenu(
+                    themeState = themeState,
                     name = personal.fullName,
                     onCloseInitialClick = {
                         scope.launch {
@@ -129,7 +135,7 @@ fun HomeMobile(
                         }
                     },
                     onSwitchThemeClick = {
-
+                        themeState.toggleTheme()
                     },
                     onDownloadCvClick = {
                         scope.launch {
@@ -311,6 +317,7 @@ fun HomeMobile(
 @Composable
 private fun DrawerMenu(
     name: String,
+    themeState: ThemeState,
     onCloseInitialClick: () -> Unit,
     onSectionClick: (Section) -> Unit,
     onSwitchThemeClick: () -> Unit,
@@ -366,6 +373,7 @@ private fun DrawerMenu(
         )
 
         SwitchTheme(
+            themeState = themeState,
             onClick = onSwitchThemeClick,
             modifier = Modifier
                 .padding(
@@ -431,6 +439,7 @@ private fun SectionItem(
 
 @Composable
 private fun SwitchTheme(
+    themeState: ThemeState,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -446,7 +455,11 @@ private fun SwitchTheme(
         )
 
         PersonalIconButtons(
-            icon = painterResource(Res.drawable.ic_dark_mode_light),
+            icon = if (themeState.isDarkMode) {
+                painterResource(Res.drawable.ic_dark_mode_light)
+            } else {
+                painterResource(Res.drawable.ic_light_mode)
+            },
             onClick = onClick
         )
     }
