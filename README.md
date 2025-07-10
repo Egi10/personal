@@ -1,18 +1,28 @@
-This is a Kotlin Multiplatform project targeting Web.
+# Personal Portfolio
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+Proyek ini adalah portofolio dalam bentuk aplikasi berbasis **Kotlin Multiplatform** yang menargetkan platform **web** menggunakan **Compose Multiplatform**. Aplikasi ini dirancang untuk mendukung dan ditampilkan di [egi10.github.io](https://egi10.github.io/).
 
+## Menjalankan Aplikasi
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
-[Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
-[Kotlin/Wasm](https://kotl.in/wasm/)…
+Untuk menjalankan aplikasi secara lokal, gunakan perintah berikut:
 
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).
+```bash
+./gradlew wasmJsBrowserDevelopmentRun -t
+```
 
-You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task.
+Untuk panduan yang lebih lengkap, silakan lihat dokumentasi resmi Kotlin: [Run the application – Kotlin/Wasm](https://kotlinlang.org/docs/wasm-get-started.html#run-the-application)
+
+## Tech Stack
+
+* [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html)
+* [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)
+* [Ktor](https://ktor.io/) – Client untuk komunikasi jaringan
+* [Koin](https://insert-koin.io/) – Dependency injection
+* [Coil](https://coil-kt.github.io/coil/) – Image loading
+* [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization) – JSON parsing
+* [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) – Asynchronous programming
+* [Kotlin/Wasm](https://kotlinlang.org/docs/wasm-overview.html) – Untuk menargetkan WebAssembly
+
+## Kontribusi
+
+Kontribusi sangat terbuka! Jika Anda menemukan bug, memiliki ide fitur baru, atau ingin memperbaiki dokumentasi, jangan ragu untuk membuat *issue* atau kirimkan *pull request*. Setiap kontribusi sangat kami hargai dalam pengembangan proyek ini.
