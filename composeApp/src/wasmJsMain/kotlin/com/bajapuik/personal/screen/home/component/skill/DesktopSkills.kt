@@ -1,20 +1,9 @@
 package com.bajapuik.personal.screen.home.component.skill
 
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -29,6 +18,7 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
+import com.bajapuik.personal.core.ui.ResponsiveColumn
 import com.bajapuik.personal.domain.model.Skills
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
@@ -40,11 +30,8 @@ fun DesktopSkills(
     skills: List<Skills>,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier
-            .padding(
-                horizontal = 32.dp
-            ),
+    ResponsiveColumn(
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(

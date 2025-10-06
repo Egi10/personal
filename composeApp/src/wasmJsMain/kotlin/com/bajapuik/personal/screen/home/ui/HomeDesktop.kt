@@ -3,21 +3,10 @@ package com.bajapuik.personal.screen.home.ui
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -25,12 +14,7 @@ import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
-import com.bajapuik.personal.core.ui.calculateResponsivePadding
-import com.bajapuik.personal.domain.model.Experience
-import com.bajapuik.personal.domain.model.Personal
-import com.bajapuik.personal.domain.model.Skills
-import com.bajapuik.personal.domain.model.Testimonial
-import com.bajapuik.personal.domain.model.Work
+import com.bajapuik.personal.domain.model.*
 import com.bajapuik.personal.screen.home.component.aboutme.DesktopAboutMe
 import com.bajapuik.personal.screen.home.component.experience.DesktopExperience
 import com.bajapuik.personal.screen.home.component.footer.Footer
@@ -58,25 +42,6 @@ fun HomeDesktop(
             .fillMaxSize(),
         contentAlignment = Alignment.TopCenter
     ) {
-        /**
-         * TODO : Adjust layout margins to match the web design at https://sagarshah.dev/
-         * On larger screens, the margins are still inconsistent
-         * Review the responsive layout rules and ensure a consistent max content width
-         */
-        val breakpoints = mapOf(
-            0.dp to 0.08f,     // <600dp: 8%
-            600.dp to 0.00f,   // 600-900dp: 0%
-            900.dp to 0.02f,   // 900-1280dp: 2%
-            1280.dp to 0.05f,  // 1280-1440dp: 5%
-            1440.dp to 0.08f   // >1440dp: 8%
-        )
-
-        val horizontalPadding = calculateResponsivePadding(
-            columnWidth = maxWidth,
-            breakpoints = breakpoints,
-            defaultMultiplier = 0.08f
-        )
-
         val scrollState = rememberScrollState()
         val isScrolled by remember {
             derivedStateOf {
@@ -116,8 +81,7 @@ fun HomeDesktop(
                             color = PersonalTheme.colors.default
                         )
                         .padding(
-                            vertical = 96.dp,
-                            horizontal = horizontalPadding
+                            vertical = 96.dp
                         )
                         .onGloballyPositioned { coordinates ->
                             profileOffset = coordinates.positionInParent().y.toInt()
@@ -132,8 +96,7 @@ fun HomeDesktop(
                             color = PersonalTheme.colors.gray50
                         )
                         .padding(
-                            vertical = 96.dp,
-                            horizontal = horizontalPadding
+                            vertical = 96.dp
                         )
                         .onGloballyPositioned { coordinates ->
                             aboutMeOffset = coordinates.positionInParent().y.toInt()
@@ -148,8 +111,7 @@ fun HomeDesktop(
                             color = PersonalTheme.colors.default
                         )
                         .padding(
-                            vertical = 96.dp,
-                            horizontal = horizontalPadding
+                            vertical = 96.dp
                         )
                 )
 
@@ -161,8 +123,7 @@ fun HomeDesktop(
                             color = PersonalTheme.colors.gray50
                         )
                         .padding(
-                            vertical = 96.dp,
-                            horizontal = horizontalPadding
+                            vertical = 96.dp
                         )
                 )
 
@@ -174,8 +135,7 @@ fun HomeDesktop(
                             color = PersonalTheme.colors.default
                         )
                         .padding(
-                            vertical = 96.dp,
-                            horizontal = horizontalPadding
+                            vertical = 96.dp
                         )
                         .onGloballyPositioned { coordinates ->
                             workOffset = coordinates.positionInParent().y.toInt()
@@ -190,8 +150,7 @@ fun HomeDesktop(
                             color = PersonalTheme.colors.gray50
                         )
                         .padding(
-                            vertical = 96.dp,
-                            horizontal = horizontalPadding
+                            vertical = 96.dp
                         )
                         .onGloballyPositioned { coordinates ->
                             testimonialOffset = coordinates.positionInParent().y.toInt()
@@ -206,7 +165,6 @@ fun HomeDesktop(
                             color = PersonalTheme.colors.default
                         )
                         .padding(
-                            horizontal = horizontalPadding,
                             vertical = 96.dp
                         )
                         .onGloballyPositioned { coordinates ->
@@ -222,8 +180,7 @@ fun HomeDesktop(
                             color = PersonalTheme.colors.gray50
                         )
                         .padding(
-                            vertical = 24.dp,
-                            horizontal = horizontalPadding
+                            vertical = 24.dp
                         )
                 )
             }
@@ -275,8 +232,7 @@ fun HomeDesktop(
                     headerHeightPx = layoutCoordinates.size.height
                 }
                 .padding(
-                    vertical = 16.dp,
-                    horizontal = horizontalPadding
+                    vertical = 16.dp
                 )
         )
     }

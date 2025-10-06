@@ -1,13 +1,7 @@
 package com.bajapuik.personal.screen.home.component.testimonials
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -15,6 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.dropShadow
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.PlatformContext
@@ -22,7 +20,6 @@ import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
-import com.bajapuik.personal.core.ui.shadowMd
 import com.bajapuik.personal.domain.model.Testimonial
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
@@ -38,11 +35,20 @@ internal fun TestimonialItem(
 ) {
     Box(
         modifier = modifier
-            .shadowMd(
-                shadowColor = PersonalTheme.colors.gray200.copy(
-                    alpha = 0.8f
-                ),
-                borderRadius = 12.dp
+            .dropShadow(
+                shape = RoundedCornerShape(12.dp),
+                block = {
+                    offset = Offset(
+                        x = 0f,
+                        y = 4f
+                    )
+                    brush = SolidColor(
+                        value = Color(0xFF000000).copy(
+                            alpha = 0.15f
+                        )
+                    )
+                    radius = 3f
+                }
             )
             .background(
                 color = PersonalTheme.colors.default,

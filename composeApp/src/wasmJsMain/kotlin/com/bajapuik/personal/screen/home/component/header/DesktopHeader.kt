@@ -1,20 +1,10 @@
 package com.bajapuik.personal.screen.home.component.header
 
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -27,6 +17,7 @@ import com.bajapuik.personal.core.designsystem.component.PersonalButton
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.designsystem.utils.LocalThemeState
+import com.bajapuik.personal.core.ui.ResponsiveRow
 import com.bajapuik.personal.core.utils.NameUtils
 import com.bajapuik.personal.screen.home.utils.Section
 import kotlinx.browser.window
@@ -42,11 +33,8 @@ fun DesktopHeader(
     name: String,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        modifier = modifier
-            .padding(
-                horizontal = 32.dp
-            ),
+    ResponsiveRow(
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(

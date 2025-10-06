@@ -1,22 +1,16 @@
 package com.bajapuik.personal.screen.home.component.experience
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.dropShadow
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -26,8 +20,7 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
-import com.bajapuik.personal.core.ui.calculateResponsivePadding
-import com.bajapuik.personal.core.ui.shadowMd
+import com.bajapuik.personal.core.ui.ResponsiveColumn
 import com.bajapuik.personal.domain.model.Experience
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
@@ -38,11 +31,8 @@ fun DesktopExperience(
     experiences: List<Experience>,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier
-            .padding(
-                horizontal = 32.dp
-            ),
+    ResponsiveColumn(
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(
@@ -66,44 +56,20 @@ fun DesktopExperience(
                 .height(48.dp)
         )
 
-        BoxWithConstraints(
+        Column(
             modifier = Modifier
-                .fillMaxWidth(),
-            contentAlignment = Alignment.TopCenter
+                .fillMaxWidth()
+                .padding(
+                    horizontal = 150.dp
+                ),
+            verticalArrangement = Arrangement.spacedBy(
+                space = 48.dp
+            )
         ) {
-            /**
-             * TODO : Adjust layout margins to match the web design at https://sagarshah.dev/
-             * On larger screens, the margins are still inconsistent
-             * Review the responsive layout rules and ensure a consistent max content width
-             */
-            val breakpoints = mapOf(
-                0.dp to 0.13f,
-                600.dp to 0.00f,
-                900.dp to 0.08f,
-                1000.dp to 0.13f,
-            )
-
-            val horizontalPadding = calculateResponsivePadding(
-                columnWidth = maxWidth,
-                breakpoints = breakpoints,
-                defaultMultiplier = 0.13f
-            )
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        horizontal = horizontalPadding
-                    ),
-                verticalArrangement = Arrangement.spacedBy(
-                    space = 48.dp
+            experiences.forEach {
+                ExperienceItem(
+                    item = it
                 )
-            ) {
-                experiences.forEach {
-                    ExperienceItem(
-                        item = it
-                    )
-                }
             }
         }
     }
@@ -116,14 +82,23 @@ private fun ExperienceItem(
 ) {
     Box(
         modifier = modifier
-            .shadowMd(
-                shadowColor = PersonalTheme.colors.gray200.copy(
-                    alpha = 0.8f
-                ),
-                borderRadius = 12.dp
+            .dropShadow(
+                shape = RoundedCornerShape(12.dp),
+                block = {
+                    offset = Offset(
+                        x = 0f,
+                        y = 4f
+                    )
+                    brush = SolidColor(
+                        value = Color(0xFF000000).copy(
+                            alpha = 0.15f
+                        )
+                    )
+                    radius = 3f
+                }
             )
             .background(
-                color = PersonalTheme.colors.default,
+                color = PersonalTheme.colors.gray100,
                 shape = RoundedCornerShape(12.dp)
             )
     ) {

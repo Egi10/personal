@@ -2,15 +2,7 @@ package com.bajapuik.personal.screen.home.component.profile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,6 +17,7 @@ import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.BlinkingAvailabilityStatus
 import com.bajapuik.personal.core.ui.Platform
+import com.bajapuik.personal.core.ui.ResponsiveRow
 import com.bajapuik.personal.domain.model.Personal
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
@@ -36,11 +29,8 @@ internal fun DesktopProfile(
     personal: Personal,
     modifier: Modifier = Modifier
 ) {
-    Row(
+    ResponsiveRow(
         modifier = modifier
-            .padding(
-                horizontal = 32.dp
-            )
     ) {
         Column(
             modifier = Modifier

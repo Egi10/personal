@@ -1,15 +1,7 @@
 package com.bajapuik.personal.screen.home.component.testimonials
 
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
+import com.bajapuik.personal.core.ui.ResponsiveColumn
 import com.bajapuik.personal.domain.model.Testimonial
 
 @Composable
@@ -25,7 +18,7 @@ fun DesktopTestimonials(
     testimonials: List<Testimonial>,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    ResponsiveColumn(
         modifier = modifier
             .padding(
                 horizontal = 32.dp

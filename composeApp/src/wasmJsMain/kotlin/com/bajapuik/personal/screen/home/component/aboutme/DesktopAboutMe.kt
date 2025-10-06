@@ -2,15 +2,7 @@ package com.bajapuik.personal.screen.home.component.aboutme
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,6 +16,7 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
+import com.bajapuik.personal.core.ui.ResponsiveColumn
 import com.bajapuik.personal.domain.model.Personal
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
@@ -34,11 +27,8 @@ fun DesktopAboutMe(
     personal: Personal,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier
-            .padding(
-                horizontal = 32.dp
-            ),
+    ResponsiveColumn(
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(

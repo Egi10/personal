@@ -1,7 +1,6 @@
 package com.bajapuik.personal.screen.home.component.getintouch
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -18,6 +17,7 @@ import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.Platform
+import com.bajapuik.personal.core.ui.ResponsiveColumn
 import com.bajapuik.personal.core.utils.Clipboard
 import com.bajapuik.personal.domain.model.Personal
 import org.jetbrains.compose.resources.painterResource
@@ -31,7 +31,7 @@ internal fun GetInTouch(
     personal: Personal,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    ResponsiveColumn(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

@@ -1,33 +1,25 @@
 package com.bajapuik.personal.screen.home.component.work
 
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.dropShadow
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil3.PlatformContext
@@ -37,31 +29,22 @@ import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
+import com.bajapuik.personal.core.ui.ResponsiveColumn
 import com.bajapuik.personal.core.ui.SimpleFlowRow
-import com.bajapuik.personal.core.ui.calculateResponsivePadding
-import com.bajapuik.personal.core.ui.shadowMd
 import com.bajapuik.personal.domain.model.Work
 import com.bajapuik.personal.screen.home.component.work.utils.WorkItemLayoutType
-import com.bajapuik.personal.screen.home.component.work.utils.imageDesktop
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import personal.composeapp.generated.resources.Res
-import personal.composeapp.generated.resources.ic_external_link
-import personal.composeapp.generated.resources.img_avatar
-import personal.composeapp.generated.resources.work
-import personal.composeapp.generated.resources.work_noteworthy_projects
+import personal.composeapp.generated.resources.*
 
 @Composable
 internal fun DesktopWork(
     works: List<Work>,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier
-            .padding(
-                horizontal = 32.dp
-            ),
+    ResponsiveColumn(
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(
@@ -84,50 +67,26 @@ internal fun DesktopWork(
                 .height(48.dp)
         )
 
-        BoxWithConstraints(
+        Column(
             modifier = Modifier
-                .fillMaxWidth(),
-            contentAlignment = Alignment.TopCenter
+                .padding(
+                    horizontal = 32.dp
+                ),
+            verticalArrangement = Arrangement.spacedBy(
+                space = 48.dp
+            )
         ) {
-            /**
-             * TODO : Adjust layout margins to match the web design at https://sagarshah.dev/
-             * On larger screens, the margins are still inconsistent
-             * Review the responsive layout rules and ensure a consistent max content width
-             */
-            val breakpoints = mapOf(
-                0.dp to 0.13f,
-                600.dp to 0.00f,
-                900.dp to 0.08f,
-                1000.dp to 0.13f,
-            )
-
-            val horizontalPadding = calculateResponsivePadding(
-                columnWidth = maxWidth,
-                breakpoints = breakpoints,
-                defaultMultiplier = 0.13f
-            )
-
-            Column(
-                modifier = Modifier
-                    .padding(
-                        horizontal = horizontalPadding
-                    ),
-                verticalArrangement = Arrangement.spacedBy(
-                    space = 48.dp
-                )
-            ) {
-                works.forEachIndexed { index, work ->
-                    if (index % 2 == 0) {
-                        WorkItem(
-                            item = work,
-                            layoutType = WorkItemLayoutType.IMAGE_LEFT
-                        )
-                    } else {
-                        WorkItem(
-                            item = work,
-                            layoutType = WorkItemLayoutType.IMAGE_RIGHT
-                        )
-                    }
+            works.forEachIndexed { index, work ->
+                if (index % 2 == 0) {
+                    WorkItem(
+                        item = work,
+                        layoutType = WorkItemLayoutType.IMAGE_LEFT
+                    )
+                } else {
+                    WorkItem(
+                        item = work,
+                        layoutType = WorkItemLayoutType.IMAGE_RIGHT
+                    )
                 }
             }
         }
@@ -140,63 +99,83 @@ private fun WorkItem(
     layoutType: WorkItemLayoutType,
     modifier: Modifier = Modifier
 ) {
-    Box(
+    Row(
         modifier = modifier
-            .shadowMd(
-                shadowColor = PersonalTheme.colors.gray200.copy(alpha = 0.8f),
-                borderRadius = 12.dp
+            .fillMaxWidth()
+            .height(IntrinsicSize.Min)
+            .dropShadow(
+                shape = RoundedCornerShape(12.dp),
+                block = {
+                    offset = Offset(
+                        x = 0f,
+                        y = 4f
+                    )
+                    brush = SolidColor(
+                        value = Color(0xFF000000).copy(
+                            alpha = 0.15f
+                        )
+                    )
+                    radius = 3f
+                }
             )
             .background(
-                color = PersonalTheme.colors.default,
+                color = PersonalTheme.colors.gray100,
                 shape = RoundedCornerShape(12.dp)
             )
+            .clip(RoundedCornerShape(12.dp)),
+        verticalAlignment = Alignment.Top
     ) {
-        SubcomposeLayout(
-            modifier = Modifier.fillMaxWidth()
-        ) { constraints ->
-            val halfWidth = constraints.maxWidth / 2
-
-            // Info
-            val infoPlaceable = subcompose("info") {
-                WorkItemInfo(
-                    item = item,
-                    modifier = Modifier.padding(48.dp)
-                )
-            }.map {
-                it.measure(constraints.copy(minWidth = 0, maxWidth = halfWidth))
-            }
-
-            val infoHeight = infoPlaceable.maxOfOrNull { it.height } ?: 0
-
-            // Image
-            val imagePlaceable = subcompose("image") {
-                val isImageLeft = layoutType == WorkItemLayoutType.IMAGE_LEFT
+        if (layoutType == WorkItemLayoutType.IMAGE_LEFT) {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .background(
+                        color = PersonalTheme.colors.gray200
+                    )
+                    .padding(
+                        all = 48.dp
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
                 WorkItemImage(
                     image = item.image,
                     modifier = Modifier
-                        .imageDesktop(
-                            isImageLeft = isImageLeft
-                        )
-                )
-            }.map {
-                it.measure(
-                    constraints.copy(
-                        minWidth = 0,
-                        maxWidth = halfWidth,
-                        minHeight = infoHeight,
-                        maxHeight = infoHeight
-                    )
+                        .matchParentSize()
                 )
             }
 
-            layout(constraints.maxWidth, infoHeight) {
-                if (layoutType == WorkItemLayoutType.IMAGE_LEFT) {
-                    imagePlaceable.forEach { it.placeRelative(0, 0) }
-                    infoPlaceable.forEach { it.placeRelative(halfWidth, 0) }
-                } else {
-                    infoPlaceable.forEach { it.placeRelative(0, 0) }
-                    imagePlaceable.forEach { it.placeRelative(halfWidth, 0) }
-                }
+            WorkItemInfo(
+                item = item,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(48.dp)
+            )
+        } else {
+            WorkItemInfo(
+                item = item,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(48.dp)
+            )
+
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .background(
+                        color = PersonalTheme.colors.gray200
+                    )
+                    .padding(
+                        all = 48.dp
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                WorkItemImage(
+                    image = item.image,
+                    modifier = Modifier
+                        .matchParentSize()
+                )
             }
         }
     }
@@ -251,19 +230,19 @@ private fun WorkItemInfo(
 @Composable
 private fun WorkItemImage(
     image: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    contentDescription: String? = null
 ) {
     var isHovered by remember { mutableStateOf(false) }
-
     val scale by animateFloatAsState(
-        if (isHovered) 1.1f else 1f, label = "hover-scale"
+        targetValue = if (isHovered) 1.1f else 1f,
+        animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy),
+        label = "hover-scale"
     )
-
     Box(
         modifier = modifier
             .onPointerEvent(PointerEventType.Enter) { isHovered = true }
-            .onPointerEvent(PointerEventType.Exit) { isHovered = false }
-            .graphicsLayer { clip = false },
+            .onPointerEvent(PointerEventType.Exit) { isHovered = false },
         contentAlignment = Alignment.Center
     ) {
         AsyncImage(
@@ -272,14 +251,16 @@ private fun WorkItemImage(
                 .crossfade(true)
                 .build(),
             placeholder = painterResource(Res.drawable.img_avatar),
-            contentDescription = null,
-            contentScale = ContentScale.Fit,
+            contentDescription = contentDescription,
+            contentScale = ContentScale.Crop,
             modifier = Modifier
-                .fillMaxSize()
-                .scale(scale)
-                .clip(
+                .aspectRatio(480f / 384f) // atau bisa .aspectRatio(5f / 4f)
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                    clip = true
                     shape = RoundedCornerShape(12.dp)
-                )
+                }
         )
     }
 }

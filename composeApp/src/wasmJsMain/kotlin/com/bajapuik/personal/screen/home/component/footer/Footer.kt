@@ -1,27 +1,28 @@
 package com.bajapuik.personal.screen.home.component.footer
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.LinkAnnotation
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextLinkStyles
-import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.*
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.withLink
+import androidx.compose.ui.unit.dp
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
+import com.bajapuik.personal.core.ui.ResponsiveColumn
 
 @Composable
 internal fun Footer(
     name: String,
     modifier: Modifier = Modifier
 ) {
-    Box(
+    ResponsiveColumn(
         modifier = modifier,
-        contentAlignment = Alignment.Center
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(
+            space = 4.dp
+        )
     ) {
         Text(
             text = buildAnnotatedString {
@@ -40,6 +41,13 @@ internal fun Footer(
                 }
                 append(" by Sagar Shah and coded with $name")
             },
+            style = PersonalTheme.typography.body2,
+            color = PersonalTheme.colors.gray600,
+            textAlign = TextAlign.Center
+        )
+
+        Text(
+            text = "Made with Compose Multiplatform",
             style = PersonalTheme.typography.body2,
             color = PersonalTheme.colors.gray600,
             textAlign = TextAlign.Center
