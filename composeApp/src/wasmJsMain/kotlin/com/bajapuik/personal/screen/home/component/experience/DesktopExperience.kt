@@ -14,17 +14,11 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil3.PlatformContext
-import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
+import com.bajapuik.personal.core.designsystem.component.PersonalImage
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.ResponsiveColumn
 import com.bajapuik.personal.domain.model.Experience
-import org.jetbrains.compose.resources.painterResource
-import personal.composeapp.generated.resources.Res
-import personal.composeapp.generated.resources.img_avatar
 
 @Composable
 fun DesktopExperience(
@@ -116,13 +110,8 @@ private fun ExperienceItem(
                 modifier = Modifier
                     .weight(1f)
             ) {
-                AsyncImage(
-                    model = ImageRequest.Builder(PlatformContext.INSTANCE)
-                        .data(item.company)
-                        .crossfade(true)
-                        .build(),
-                    placeholder = painterResource(Res.drawable.img_avatar),
-                    contentDescription = null,
+                PersonalImage(
+                    url = item.company,
                     modifier = Modifier
                         .size(
                             width = 102.dp,

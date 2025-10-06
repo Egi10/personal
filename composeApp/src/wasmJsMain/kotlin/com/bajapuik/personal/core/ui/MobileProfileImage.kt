@@ -11,14 +11,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import coil3.PlatformContext
-import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
+import com.bajapuik.personal.core.designsystem.component.PersonalImage
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
-import org.jetbrains.compose.resources.painterResource
-import personal.composeapp.generated.resources.Res
-import personal.composeapp.generated.resources.img_avatar
 
 @Composable
 fun MobileProfileImage(
@@ -50,13 +44,8 @@ fun MobileProfileImage(
                 )
         )
 
-        AsyncImage(
-            model = ImageRequest.Builder(PlatformContext.INSTANCE)
-                .data(image)
-                .crossfade(true)
-                .build(),
-            placeholder = painterResource(Res.drawable.img_avatar),
-            contentDescription = null,
+        PersonalImage(
+            url = image,
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .matchParentSize()

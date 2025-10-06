@@ -6,11 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -21,14 +17,7 @@ import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
-import coil3.PlatformContext
-import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
-import org.jetbrains.compose.resources.painterResource
-import personal.composeapp.generated.resources.Res
-import personal.composeapp.generated.resources.img_avatar
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -107,17 +96,11 @@ fun PersonalIconButtons(
             },
         contentAlignment = Alignment.Center
     ) {
-        AsyncImage(
-            model = ImageRequest.Builder(PlatformContext.INSTANCE)
-                .data(icon)
-                .crossfade(true)
-                .build(),
-            placeholder = painterResource(Res.drawable.img_avatar),
-            error = painterResource(Res.drawable.img_avatar),
+        PersonalImage(
+            url = icon,
             colorFilter = ColorFilter.tint(
                 color = PersonalTheme.colors.gray600
             ),
-            contentDescription = null,
             modifier = Modifier
                 .size(24.dp)
         )

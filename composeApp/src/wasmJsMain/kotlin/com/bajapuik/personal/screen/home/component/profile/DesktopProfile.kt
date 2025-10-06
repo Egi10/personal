@@ -10,10 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil3.PlatformContext
-import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
+import com.bajapuik.personal.core.designsystem.component.PersonalImage
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.BlinkingAvailabilityStatus
 import com.bajapuik.personal.core.ui.Platform
@@ -22,7 +19,6 @@ import com.bajapuik.personal.domain.model.Personal
 import org.jetbrains.compose.resources.painterResource
 import personal.composeapp.generated.resources.Res
 import personal.composeapp.generated.resources.ic_location
-import personal.composeapp.generated.resources.img_avatar
 
 @Composable
 internal fun DesktopProfile(
@@ -137,13 +133,8 @@ private fun ProfileImage(
                 )
         )
 
-        AsyncImage(
-            model = ImageRequest.Builder(PlatformContext.INSTANCE)
-                .data(image)
-                .crossfade(true)
-                .build(),
-            placeholder = painterResource(Res.drawable.img_avatar),
-            contentDescription = null,
+        PersonalImage(
+            url = image,
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(
@@ -154,10 +145,6 @@ private fun ProfileImage(
                     width = 8.dp,
                     color = PersonalTheme.colors.default
                 )
-                .background(
-                    color = PersonalTheme.colors.emerald500
-                )
-
                 .align(
                     alignment = Alignment.TopStart
                 ),

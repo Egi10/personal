@@ -22,11 +22,8 @@ import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil3.PlatformContext
-import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
+import com.bajapuik.personal.core.designsystem.component.PersonalImage
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.ResponsiveColumn
@@ -36,7 +33,10 @@ import com.bajapuik.personal.screen.home.component.work.utils.WorkItemLayoutType
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import personal.composeapp.generated.resources.*
+import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.ic_external_link
+import personal.composeapp.generated.resources.work
+import personal.composeapp.generated.resources.work_noteworthy_projects
 
 @Composable
 internal fun DesktopWork(
@@ -245,13 +245,8 @@ private fun WorkItemImage(
             .onPointerEvent(PointerEventType.Exit) { isHovered = false },
         contentAlignment = Alignment.Center
     ) {
-        AsyncImage(
-            model = ImageRequest.Builder(PlatformContext.INSTANCE)
-                .data(image)
-                .crossfade(true)
-                .build(),
-            placeholder = painterResource(Res.drawable.img_avatar),
-            contentDescription = contentDescription,
+        PersonalImage(
+            url = image,
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .aspectRatio(480f / 384f) // atau bisa .aspectRatio(5f / 4f)

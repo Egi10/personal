@@ -15,15 +15,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil3.PlatformContext
-import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
+import com.bajapuik.personal.core.designsystem.component.PersonalImage
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.domain.model.Testimonial
-import org.jetbrains.compose.resources.painterResource
-import personal.composeapp.generated.resources.Res
-import personal.composeapp.generated.resources.img_avatar
 
 @Composable
 internal fun TestimonialItem(
@@ -66,13 +60,8 @@ internal fun TestimonialItem(
             ),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            AsyncImage(
-                model = ImageRequest.Builder(PlatformContext.INSTANCE)
-                    .data(item.image)
-                    .crossfade(true)
-                    .build(),
-                placeholder = painterResource(Res.drawable.img_avatar),
-                contentDescription = null,
+            PersonalImage(
+                url = item.image.orEmpty(),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(64.dp)

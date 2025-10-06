@@ -15,18 +15,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil3.PlatformContext
-import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
 import com.bajapuik.personal.core.designsystem.component.PersonalIconButtons
+import com.bajapuik.personal.core.designsystem.component.PersonalImage
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.domain.model.Work
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import personal.composeapp.generated.resources.*
+import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.ic_external_link
+import personal.composeapp.generated.resources.work
+import personal.composeapp.generated.resources.work_noteworthy_projects
 
 @Composable
 internal fun MobileWork(
@@ -121,13 +121,8 @@ private fun MobileWorkItem(
                     ),
                 contentAlignment = Alignment.Center
             ) {
-                AsyncImage(
-                    model = ImageRequest.Builder(PlatformContext.INSTANCE)
-                        .data(item.image)
-                        .crossfade(true)
-                        .build(),
-                    placeholder = painterResource(Res.drawable.img_avatar),
-                    contentDescription = null,
+                PersonalImage(
+                    url = item.image,
                     modifier = Modifier
                         .matchParentSize()
                         .clip(
