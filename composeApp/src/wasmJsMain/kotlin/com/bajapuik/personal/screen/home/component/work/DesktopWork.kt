@@ -230,21 +230,21 @@ private fun WorkItemInfo(
 @Composable
 private fun WorkItemImage(
     image: String,
-    modifier: Modifier = Modifier,
-    contentDescription: String? = null
+    modifier: Modifier = Modifier
 ) {
     var isHovered by remember { mutableStateOf(false) }
-    val scale by animateFloatAsState(
-        targetValue = if (isHovered) 1.1f else 1f,
-        animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy),
-        label = "hover-scale"
-    )
     Box(
         modifier = modifier
             .onPointerEvent(PointerEventType.Enter) { isHovered = true }
             .onPointerEvent(PointerEventType.Exit) { isHovered = false },
         contentAlignment = Alignment.Center
     ) {
+        val scale by animateFloatAsState(
+            targetValue = if (isHovered) 1.1f else 1f,
+            animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy),
+            label = "hover-scale"
+        )
+
         PersonalImage(
             url = image,
             contentScale = ContentScale.Crop,
