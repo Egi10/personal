@@ -13,11 +13,11 @@
     <string name="experience_subtitle_desktop">Here is a quick summary of my most recent experiences:</string>
     <string name="present">Present</string>
     <string name="get_in_touch">Get in touch</string>
-    <string name="get_in_touch_subtitle">What’s next? Feel free to reach out to me if you\'re looking for a developer, have a query, or simply want to connect.</string>
+    <string name="get_in_touch_subtitle">What’s next? Feel free to reach out to me if you're looking for a developer, have a query, or simply want to connect.</string>
     <string name="get_in_touch_platforms">You may also find me on these platforms!</string>
     <string name="footer_copyright">© 2025 | </string>
     <string name="footer_designed">Designed</string>
-    <string name="footer_by_and_coded_with"> by Sagar Shah and coded with %s</string>
+    <string name="footer_by_and_coded_with"> by Sagar Shah and coded with %1$s</string>
     <string name="footer_made_with">Made with Compose Multiplatform</string>
     <string name="testimonials">Testimonials</string>
     <string name="testimonials_subtitle">Nice things people have said about me:</string>
