@@ -14,6 +14,10 @@ import androidx.compose.ui.unit.dp
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.domain.model.Testimonial
+import org.jetbrains.compose.resources.stringResource
+import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.testimonials
+import personal.composeapp.generated.resources.testimonials_subtitle
 
 @Composable
 internal fun MobileTestimonials(
@@ -25,7 +29,7 @@ internal fun MobileTestimonials(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(
-            text = "Testimonials"
+            text = stringResource(Res.string.testimonials)
         )
 
         Spacer(
@@ -34,7 +38,7 @@ internal fun MobileTestimonials(
         )
 
         Text(
-            text = "Nice things people have said about me:",
+            text = stringResource(Res.string.testimonials_subtitle),
             style = PersonalTheme.typography.subtitle,
             color = PersonalTheme.colors.gray600,
             textAlign = TextAlign.Center

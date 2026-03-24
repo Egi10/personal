@@ -2,7 +2,14 @@ package com.bajapuik.personal.screen.home.component.profile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,7 +24,9 @@ import com.bajapuik.personal.core.ui.Platform
 import com.bajapuik.personal.core.ui.ResponsiveRow
 import com.bajapuik.personal.domain.model.Personal
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.hi_im
 import personal.composeapp.generated.resources.ic_location
 
 @Composable
@@ -33,7 +42,7 @@ internal fun DesktopProfile(
                 .weight(1f)
         ) {
             Text(
-                text = "Hi, I'm ${personal.fullName}",
+                text = stringResource(Res.string.hi_im, personal.fullName),
                 style = PersonalTheme.typography.headingH1,
                 color = PersonalTheme.colors.gray900
             )

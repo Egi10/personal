@@ -2,7 +2,14 @@ package com.bajapuik.personal.screen.home.component.aboutme
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,6 +22,10 @@ import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.ResponsiveColumn
 import com.bajapuik.personal.domain.model.Personal
+import org.jetbrains.compose.resources.stringResource
+import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.about_me
+import personal.composeapp.generated.resources.about_me_curious
 
 @Composable
 fun DesktopAboutMe(
@@ -26,7 +37,7 @@ fun DesktopAboutMe(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(
-            text = "About Me"
+            text = stringResource(Res.string.about_me)
         )
 
         Spacer(
@@ -56,7 +67,7 @@ fun DesktopAboutMe(
                     .weight(1f)
             ) {
                 Text(
-                    text = "Curious about me? Here you have it:",
+                    text = stringResource(Res.string.about_me_curious),
                     style = PersonalTheme.typography.headingH3,
                     color = PersonalTheme.colors.gray900,
                     fontWeight = FontWeight.SemiBold

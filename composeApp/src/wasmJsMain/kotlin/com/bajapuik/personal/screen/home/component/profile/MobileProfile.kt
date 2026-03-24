@@ -21,7 +21,9 @@ import com.bajapuik.personal.core.ui.MobileProfileImage
 import com.bajapuik.personal.core.ui.Platform
 import com.bajapuik.personal.domain.model.Personal
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.hi_im
 import personal.composeapp.generated.resources.ic_location
 
 @Composable
@@ -64,7 +66,7 @@ private fun MobileProfileInfo(
         modifier = modifier
     ) {
         Text(
-            text = "Hi, I'm ${personal.fullName}",
+            text = stringResource(Res.string.hi_im, personal.fullName),
             style = PersonalTheme.typography.headingH1,
             color = PersonalTheme.colors.gray900,
             fontWeight = FontWeight.SemiBold

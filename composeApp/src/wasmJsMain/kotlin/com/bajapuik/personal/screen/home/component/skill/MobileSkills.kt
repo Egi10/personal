@@ -1,7 +1,13 @@
 package com.bajapuik.personal.screen.home.component.skill
 
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,6 +20,10 @@ import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.domain.model.Skills
 import kotlinx.browser.window
+import org.jetbrains.compose.resources.stringResource
+import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.skills
+import personal.composeapp.generated.resources.skills_subtitle
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -26,7 +36,7 @@ fun MobileSkills(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(
-            text = "Skills"
+            text = stringResource(Res.string.skills)
         )
 
         Spacer(
@@ -35,7 +45,7 @@ fun MobileSkills(
         )
 
         Text(
-            text = "The skills, tools and technologies I am really good at:",
+            text = stringResource(Res.string.skills_subtitle),
             textAlign = TextAlign.Center,
             style = PersonalTheme.typography.subtitle,
             color = PersonalTheme.colors.gray600

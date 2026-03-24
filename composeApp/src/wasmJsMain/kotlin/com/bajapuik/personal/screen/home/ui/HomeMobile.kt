@@ -62,10 +62,13 @@ import com.bajapuik.personal.screen.home.utils.glassBackground
 import kotlinx.browser.window
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.download_cv
 import personal.composeapp.generated.resources.ic_close
 import personal.composeapp.generated.resources.ic_dark_mode_light
 import personal.composeapp.generated.resources.ic_light_mode
+import personal.composeapp.generated.resources.switch_theme
 
 @Composable
 fun HomeMobile(
@@ -352,7 +355,7 @@ private fun DrawerMenu(
         ) {
             Section.entries.forEach { section ->
                 SectionItem(
-                    item = section.title,
+                    item = stringResource(section.titleRes),
                     modifier = Modifier
                         .fillMaxWidth()
                         .pointerInput(Unit) {
@@ -382,7 +385,7 @@ private fun DrawerMenu(
         )
 
         PersonalButton(
-            text = "Download CV",
+            text = stringResource(Res.string.download_cv),
             onClick = onDownloadCvClick,
             modifier = Modifier
                 .fillMaxWidth()
@@ -449,7 +452,7 @@ private fun SwitchTheme(
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = "Switch Theme",
+            text = stringResource(Res.string.switch_theme),
             style = PersonalTheme.typography.body2,
             color = PersonalTheme.colors.gray600
         )

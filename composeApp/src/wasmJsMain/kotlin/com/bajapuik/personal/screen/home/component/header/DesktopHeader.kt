@@ -1,10 +1,19 @@
 package com.bajapuik.personal.screen.home.component.header
 
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -22,7 +31,9 @@ import com.bajapuik.personal.core.utils.NameUtils
 import com.bajapuik.personal.screen.home.utils.Section
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.download_cv
 import personal.composeapp.generated.resources.ic_dark_mode_light
 import personal.composeapp.generated.resources.ic_light_mode
 
@@ -107,7 +118,7 @@ private fun MenuNavigation(
         )
 
         PersonalButton(
-            text = "Download CV",
+            text = stringResource(Res.string.download_cv),
             onClick = {
                 window.open(
                     "https://egi10.github.io/storage/resume/julsapargi_nursam.pdf",
@@ -149,7 +160,7 @@ private fun MenuHeader(
                     }
             ) {
                 Text(
-                    text = s.title,
+                    text = stringResource(s.titleRes),
                     style = PersonalTheme.typography.body2,
                     fontWeight = FontWeight.Medium,
                     color = if (!isHovered) {

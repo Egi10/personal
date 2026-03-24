@@ -1,7 +1,14 @@
 package com.bajapuik.personal.screen.home.component.testimonials
 
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -12,6 +19,10 @@ import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.ResponsiveColumn
 import com.bajapuik.personal.domain.model.Testimonial
+import org.jetbrains.compose.resources.stringResource
+import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.testimonials
+import personal.composeapp.generated.resources.testimonials_subtitle
 
 @Composable
 fun DesktopTestimonials(
@@ -26,7 +37,7 @@ fun DesktopTestimonials(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(
-            text = "Testimonials"
+            text = stringResource(Res.string.testimonials)
         )
 
         Spacer(
@@ -35,7 +46,7 @@ fun DesktopTestimonials(
         )
 
         Text(
-            text = "Nice things people have said about me:",
+            text = stringResource(Res.string.testimonials_subtitle),
             style = PersonalTheme.typography.subtitle,
             color = PersonalTheme.colors.gray600
         )

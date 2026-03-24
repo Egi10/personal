@@ -16,6 +16,10 @@ import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.MobileProfileImage
 import com.bajapuik.personal.domain.model.Personal
+import org.jetbrains.compose.resources.stringResource
+import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.about_me
+import personal.composeapp.generated.resources.about_me_curious
 
 @Composable
 fun MobileAboutMe(
@@ -27,7 +31,7 @@ fun MobileAboutMe(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(
-            text = "About Me"
+            text = stringResource(Res.string.about_me)
         )
 
         Spacer(
@@ -52,7 +56,7 @@ fun MobileAboutMe(
         )
 
         Text(
-            text = "Curious about me? Here you have it:",
+            text = stringResource(Res.string.about_me_curious),
             style = PersonalTheme.typography.headingH3,
             color = PersonalTheme.colors.gray900,
             fontWeight = FontWeight.SemiBold,

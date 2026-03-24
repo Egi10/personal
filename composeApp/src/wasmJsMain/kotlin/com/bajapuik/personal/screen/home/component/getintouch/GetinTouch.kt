@@ -21,7 +21,11 @@ import com.bajapuik.personal.core.ui.ResponsiveColumn
 import com.bajapuik.personal.core.utils.Clipboard
 import com.bajapuik.personal.domain.model.Personal
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.get_in_touch
+import personal.composeapp.generated.resources.get_in_touch_platforms
+import personal.composeapp.generated.resources.get_in_touch_subtitle
 import personal.composeapp.generated.resources.ic_copy
 import personal.composeapp.generated.resources.ic_email
 import personal.composeapp.generated.resources.ic_telp
@@ -36,7 +40,7 @@ internal fun GetInTouch(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(
-            text = "Get in touch"
+            text = stringResource(Res.string.get_in_touch)
         )
 
         Spacer(
@@ -45,7 +49,7 @@ internal fun GetInTouch(
         )
 
         Text(
-            text = "What’s next? Feel free to reach out to me if you're looking for a developer, have a query, or simply want to connect.",
+            text = stringResource(Res.string.get_in_touch_subtitle),
             style = PersonalTheme.typography.subtitle,
             color = PersonalTheme.colors.gray600,
             textAlign = TextAlign.Center
@@ -77,7 +81,7 @@ internal fun GetInTouch(
         )
 
         Text(
-            text = "You may also find me on these platforms!",
+            text = stringResource(Res.string.get_in_touch_platforms),
             style = PersonalTheme.typography.subtitle,
             color = PersonalTheme.colors.gray600,
             textAlign = TextAlign.Center

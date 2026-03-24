@@ -1,7 +1,16 @@
 package com.bajapuik.personal.screen.home.component.experience
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +28,11 @@ import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.core.ui.ResponsiveColumn
 import com.bajapuik.personal.domain.model.Experience
+import org.jetbrains.compose.resources.stringResource
+import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.experience
+import personal.composeapp.generated.resources.experience_subtitle_desktop
+import personal.composeapp.generated.resources.present
 
 @Composable
 fun DesktopExperience(
@@ -30,7 +44,7 @@ fun DesktopExperience(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(
-            text = "Experience",
+            text = stringResource(Res.string.experience),
         )
 
         Spacer(
@@ -39,7 +53,7 @@ fun DesktopExperience(
         )
 
         Text(
-            text = "Here is a quick summary of my most recent experiences:",
+            text = stringResource(Res.string.experience_subtitle_desktop),
             textAlign = TextAlign.Center,
             style = PersonalTheme.typography.subtitle,
             color = PersonalTheme.colors.gray600
@@ -168,7 +182,7 @@ private fun ExperienceItem(
             }
 
             Text(
-                text = "${item.startDate} - ${item.endDate ?: "Present"}",
+                text = "${item.startDate} - ${item.endDate ?: stringResource(Res.string.present)}",
                 style = PersonalTheme.typography.body2,
                 color = PersonalTheme.colors.gray700
             )

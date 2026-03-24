@@ -1,7 +1,16 @@
 package com.bajapuik.personal.screen.home.component.experience
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +27,10 @@ import com.bajapuik.personal.core.designsystem.component.PersonalImage
 import com.bajapuik.personal.core.designsystem.component.PersonalTags
 import com.bajapuik.personal.core.designsystem.theme.PersonalTheme
 import com.bajapuik.personal.domain.model.Experience
+import org.jetbrains.compose.resources.stringResource
+import personal.composeapp.generated.resources.Res
+import personal.composeapp.generated.resources.experience
+import personal.composeapp.generated.resources.experience_subtitle_mobile
 
 @Composable
 internal fun MobileExperience(
@@ -29,7 +42,7 @@ internal fun MobileExperience(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PersonalTags(
-            text = "Experience"
+            text = stringResource(Res.string.experience)
         )
 
         Spacer(
@@ -38,7 +51,7 @@ internal fun MobileExperience(
         )
 
         Text(
-            text = "Here are a few of the projects I've worked on recently:",
+            text = stringResource(Res.string.experience_subtitle_mobile),
             style = PersonalTheme.typography.subtitle,
             color = PersonalTheme.colors.gray600,
             textAlign = TextAlign.Center
