@@ -1,14 +1,14 @@
 [versions]
 androidx-lifecycle = "2.9.4"
-compose-multiplatform = "1.9.0"
-compose-material3WindowSize = "1.9.0-beta06"
-kotlin = "2.2.20"
-coil = "3.3.0"
-ktor = "3.3.0"
-koin-bom = "4.1.1"
-kotlinx-serializationJson = "1.9.0"
+compose-multiplatform = "1.10.3"
+compose-material3 = "1.10.0-alpha05"
+compose-material3WindowSize = "1.10.0-alpha05"
+kotlin = "2.3.20"
+coil = "3.4.0"
+ktor = "3.4.1"
+koin-bom = "4.2.0"
+kotlinx-serializationJson = "1.10.0"
 multiplatform-settings = "1.3.0"
-haze = "1.6.10"
 
 [libraries]
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
@@ -16,6 +16,12 @@ androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle
 compose-material3-window-size = { group = "org.jetbrains.compose.material3", name = "material3-window-size-class", version.ref = "compose-material3WindowSize" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose-multiplatform" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose-multiplatform" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose-multiplatform" }
+compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose-material3" }
+compose-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose-multiplatform" }
+compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose-multiplatform" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serializationJson" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
@@ -26,7 +32,6 @@ koin-core = { module = "io.insert-koin:koin-core" }
 koin-compose = { module = "io.insert-koin:koin-compose" }
 koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel" }
 multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatform-settings" }
-haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
 
 [plugins]
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
